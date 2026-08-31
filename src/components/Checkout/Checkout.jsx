@@ -6,6 +6,7 @@ function Checkout({ carrinho, fecharCheckout, finalizarCompra }) {
     const [email, setEmail] = useState("");
     const [pagamento, setPagamento] = useState("Cartão");
     const [erro, setErro] = useState("");
+    const [processando, setProcessando] = useState(false);
 
     const total = carrinho.reduce((soma, produto) => {
         return soma + produto.preco * produto.quantidade;
@@ -51,6 +52,8 @@ function Checkout({ carrinho, fecharCheckout, finalizarCompra }) {
         }
 
         try {
+            setProcessando(true);
+
             await processarPedido();
 
             finalizarCompra({
@@ -61,6 +64,8 @@ function Checkout({ carrinho, fecharCheckout, finalizarCompra }) {
             });
         } catch (error) {
             setErro(error);
+        } finally {
+            setProcessando(false);
         }
     }
 
@@ -130,8 +135,9 @@ function Checkout({ carrinho, fecharCheckout, finalizarCompra }) {
                     <button
                         type="submit"
                         className="confirm-button"
+                        disabled={processando}
                     >
-                        Confirmar pedido
+                        {processando ? "Processando pedido..." : "Confirmar pedido"}
                     </button>
                 </form>
             </div>
