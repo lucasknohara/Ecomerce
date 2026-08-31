@@ -1,54 +1,77 @@
 # EcoTrend
 
-E-commerce de Ecobags sustentáveis desenvolvido em React e JavaScript.
+A EcoTrend é uma aplicação de e-commerce voltada para a venda de ecobags.
 
-## Funcionalidades
+## Tecnologias utilizadas
 
-- Listagem de produtos usando JSON
-- Requisição GET com fetch
-- Loading spinner
-- Filtro por categoria
-- Filtro por preço
-- Busca por nome
-- Carrinho de compras dinâmico
-- Persistência do carrinho com localStorage
-- Alteração de quantidade
-- Remoção de produtos
-- Checkout simulado com Promise
-- Mensagens de sucesso e erro
-- Layout responsivo
+* React
+* JavaScript
+* HTML
+* CSS
+* Vite
+* Fetch API
+* LocalStorage
+* Font Awesome
+* Google Fonts
 
-## Tecnologias
+## Como executar o projeto
 
-- React
-- JavaScript
-- Vite
-- HTML
-- CSS
-- Fetch API
-- localStorage
-- JSON
-- Font Awesome
-- Google Fonts
+Primeiro, clone o repositório:
 
-## Como executar
+```bash
+git clone URL_DO_REPOSITORIO
+```
+
+Entre na pasta do projeto:
+
+```bash
+cd Ecomerce
+```
+
+Instale as dependências:
 
 ```bash
 npm install
+```
+
+Depois execute o projeto:
+
+```bash
 npm run dev
 ```
 
-Depois é só abrir o endereço mostrado pelo Vite.
+O Vite irá disponibilizar o projeto em um endereço local para acessar pelo navegador.
 
-## Estrutura
+## Produtos
 
-- `src/App.jsx`: lógica principal da aplicação
-- `src/styles.css`: estilos
-- `src/main.jsx`: entrada do React
-- `public/products.json`: dados dos produtos
+Os produtos utilizados na aplicação são armazenados no arquivo:
 
-## Integrantes
+```text
+public/produtos.json
+```
 
-- Lucas Kaoru
-- Matheus Lemos
-- Enzo Eccheli
+Os dados dos produtos são carregados utilizando `fetch` e exibidos dinamicamente na aplicação.
+
+## Carrinho
+
+O carrinho permite adicionar produtos, aumentar ou diminuir suas quantidades e remover produtos.
+
+Os dados do carrinho são armazenados no `localStorage`, fazendo com que os produtos continuem no carrinho mesmo após atualizar a página.
+
+## Checkout
+
+O checkout permite informar:
+
+* Nome
+* E-mail
+* Forma de pagamento
+
+Antes de finalizar a compra, os dados são validados.
+
+O processamento do pedido é simulado utilizando uma `Promise` e `async/await`, exibindo um feedback enquanto o pedido está sendo processado.
+
+## Desenvolvido por
+
+Lucas Kaoru
+Matheus Lemos
+Enzo Echelli
