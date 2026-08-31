@@ -9,7 +9,7 @@ function App() {
             try {
                 setLoading(true);
 
-                const resposta = await fetch("/products.json");
+                const resposta = await fetch("/produtos.json");
 
                 if (!resposta.ok) {
                     throw new Error("Erro ao carregar produtos");
@@ -30,31 +30,151 @@ function App() {
 
     return (
         <div>
-            <h1>EcoTrend</h1>
-
-            {loading ? (
-                <p>Carregando produtos...</p>
-            ) : (
-                <div>
-                    {produtos.map((produto) => (
-                        <div key={produto.id}>
-                            <img
-                                src={produto.imagem}
-                                alt={produto.nome}
-                                width="200"
-                            />
-
-                            <h2>{produto.nome}</h2>
-
-                            <p>{produto.descricao}</p>
-
-                            <strong>
-                                R$ {produto.preco.toFixed(2)}
-                            </strong>
-                        </div>
-                    ))}
+            <header className="header">
+                <div className="logo">
+                    <span>Eco</span>Trend
                 </div>
-            )}
+
+                <nav>
+                    <a href="#inicio">Início</a>
+                    <a href="#produtos">Ecobags</a>
+                    <a href="#sobre">Sobre</a>
+                </nav>
+
+                <button className="cart-button">
+                    <i className="fa-solid fa-bag-shopping"></i>
+                    Carrinho
+                </button>
+            </header>
+
+            <main>
+                <section className="hero" id="inicio">
+                    <div className="hero-content">
+                        <p className="tag">CONSUMO CONSCIENTE</p>
+
+                        <h1>
+                            Carregue suas escolhas.
+                            <span> Cuide do planeta.</span>
+                        </h1>
+
+                        <p>
+                            Ecobags bonitas, resistentes e reutilizáveis
+                            para deixar sua rotina mais sustentável.
+                        </p>
+
+                        <a href="#produtos" className="hero-button">
+                            Ver ecobags
+                        </a>
+                    </div>
+
+                    <div className="hero-image">
+                        <i className="fa-solid fa-leaf"></i>
+                    </div>
+                </section>
+
+                <section className="produtos" id="produtos">
+                    <div className="section-title">
+                        <p className="tag">NOSSA COLEÇÃO</p>
+
+                        <h2>Escolha sua ecobag</h2>
+
+                        <p>
+                            Encontre o modelo perfeito para acompanhar
+                            o seu dia.
+                        </p>
+                    </div>
+
+                    {loading ? (
+                        <div className="loading">
+                            <p>Carregando produtos...</p>
+                        </div>
+                    ) : (
+                        <div className="produtos-grid">
+                            {produtos.map((produto) => (
+                                <div
+                                    className="produto-card"
+                                    key={produto.id}
+                                >
+                                    <div className="produto-image">
+                                        <img
+                                            src={produto.imagem}
+                                            alt={produto.nome}
+                                        />
+                                    </div>
+
+                                    <div className="produto-info">
+                                        <p>{produto.categoria}</p>
+
+                                        <h3>{produto.nome}</h3>
+
+                                        <strong>
+                                            R$ {produto.preco.toFixed(2)}
+                                        </strong>
+
+                                        <button>
+                                            Adicionar ao carrinho
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </section>
+
+                <section className="sobre" id="sobre">
+                    <div className="sobre-content">
+                        <p className="tag">SOBRE A ECOTREND</p>
+
+                        <h2>
+                            Uma escolha simples pode fazer diferença.
+                        </h2>
+
+                        <p>
+                            A EcoTrend nasceu para incentivar escolhas mais
+                            conscientes através de produtos reutilizáveis,
+                            começando pelas ecobags.
+                        </p>
+                    </div>
+
+                    <div className="sobre-items">
+                        <div>
+                            <i className="fa-solid fa-recycle"></i>
+                            <h3>Reutilizável</h3>
+                            <p>
+                                Use várias vezes e reduza o consumo de
+                                sacolas descartáveis.
+                            </p>
+                        </div>
+
+                        <div>
+                            <i className="fa-solid fa-leaf"></i>
+                            <h3>Sustentável</h3>
+                            <p>
+                                Uma alternativa simples para uma rotina
+                                mais consciente.
+                            </p>
+                        </div>
+
+                        <div>
+                            <i className="fa-solid fa-heart"></i>
+                            <h3>Feita para você</h3>
+                            <p>
+                                Modelos para diferentes estilos e momentos.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <footer>
+                <div className="logo">
+                    <span>Eco</span>Trend
+                </div>
+
+                <p>
+                    © 2026 EcoTrend. Todos os direitos reservados.
+                </p>
+            </footer>
         </div>
     );
 }
