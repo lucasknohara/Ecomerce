@@ -1,16 +1,54 @@
-# React + Vite
+# EcoTrend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+E-commerce de Ecobags sustentáveis desenvolvido em React e JavaScript.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Listagem de produtos usando JSON
+- Requisição GET com fetch
+- Loading spinner
+- Filtro por categoria
+- Filtro por preço
+- Busca por nome
+- Carrinho de compras dinâmico
+- Persistência do carrinho com localStorage
+- Alteração de quantidade
+- Remoção de produtos
+- Checkout simulado com Promise
+- Mensagens de sucesso e erro
+- Layout responsivo
 
-## React Compiler
+## Tecnologias
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- JavaScript
+- Vite
+- HTML
+- CSS
+- Fetch API
+- localStorage
+- JSON
+- Font Awesome
+- Google Fonts
 
-## Expanding the ESLint configuration
+## Como executar
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev
+```
+
+Depois é só abrir o endereço mostrado pelo Vite.
+
+## Estrutura
+
+- `src/App.jsx`: lógica principal da aplicação
+- `src/styles.css`: estilos
+- `src/main.jsx`: entrada do React
+- `public/products.json`: dados dos produtos
+
+## Integrantes
+
+- Lucas Kaoru
+- Matheus Lemos
+- Enzo Eccheli
