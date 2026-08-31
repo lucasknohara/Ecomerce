@@ -5,6 +5,7 @@ function Checkout({ carrinho, fecharCheckout, finalizarCompra }) {
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
     const [pagamento, setPagamento] = useState("Cartão");
+    const [erro, setErro] = useState("");
 
     const total = carrinho.reduce((soma, produto) => {
         return soma + produto.preco * produto.quantidade;
@@ -13,8 +14,25 @@ function Checkout({ carrinho, fecharCheckout, finalizarCompra }) {
     function enviarPedido(e) {
         e.preventDefault();
 
-        if (!nome || !email) {
-            alert("Preencha todos os campos.");
+        setErro("");
+
+        if (carrinho.length === 0) {
+            setErro("Seu carrinho está vazio.");
+            return;
+        }
+
+        if (!nome.trim()) {
+            setErro("Digite seu nome.");
+            return;
+        }
+
+        if (!email.trim()) {
+            setErro("Digite seu e-mail.");
+            return;
+        }
+
+        if (!email.includes("@")) {
+            setErro("Digite um e-mail válido.");
             return;
         }
 
@@ -82,6 +100,12 @@ function Checkout({ carrinho, fecharCheckout, finalizarCompra }) {
                             R$ {total.toFixed(2)}
                         </strong>
                     </div>
+
+                    {erro && (
+                        <p className="checkout-error">
+                            {erro}
+                        </p>
+                    )}
 
                     <button
                         type="submit"

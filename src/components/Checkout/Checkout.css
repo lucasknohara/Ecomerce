@@ -143,3 +143,19 @@
 .confirm-button:hover {
     background-color: #203b28;
 }
+
+.checkout-error {
+    margin: 0;
+
+    padding: 10px;
+
+    border-radius: 6px;
+
+    background-color: #fceaea;
+
+    color: #b44c4c;
+
+    font-size: 13px;
+
+    text-align: center;
+}
