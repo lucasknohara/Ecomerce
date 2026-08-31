@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ProductCard from "./components/ProductCard/ProductCard.jsx";
 
 function App() {
     const [produtos, setProdutos] = useState([]);
@@ -91,31 +92,10 @@ function App() {
                     ) : (
                         <div className="produtos-grid">
                             {produtos.map((produto) => (
-                                <div
-                                    className="produto-card"
+                                <ProductCard
                                     key={produto.id}
-                                >
-                                    <div className="produto-image">
-                                        <img
-                                            src={produto.imagem}
-                                            alt={produto.nome}
-                                        />
-                                    </div>
-
-                                    <div className="produto-info">
-                                        <p>{produto.categoria}</p>
-
-                                        <h3>{produto.nome}</h3>
-
-                                        <strong>
-                                            R$ {produto.preco.toFixed(2)}
-                                        </strong>
-
-                                        <button>
-                                            Adicionar ao carrinho
-                                        </button>
-                                    </div>
-                                </div>
+                                    produto={produto}
+                                />
                             ))}
                         </div>
                     )}
