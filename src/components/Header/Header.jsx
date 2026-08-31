@@ -1,6 +1,6 @@
 import "./Header.css";
 
-function Header({ quantidadeCarrinho }) {
+function Header({ quantidadeCarrinho, abrirCarrinho  }) {
     return (
         <header className="header">
             <div className="logo">
@@ -13,7 +13,7 @@ function Header({ quantidadeCarrinho }) {
                 <a href="#sobre">Sobre</a>
             </nav>
 
-            <button className="cart-button">
+            <button className="cart-button" onClick={abrirCarrinho}>
                 <i className="fa-solid fa-bag-shopping"></i>
 
                 Carrinho ({quantidadeCarrinho})

@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import ProductCard from "./components/ProductCard/ProductCard.jsx";
 import Header from "./components/Header/Header";
+import Cart from "./components/Cart/Cart";
 
 function App() {
     const [produtos, setProdutos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [carrinho, setCarrinho] = useState([]);
+    const [carrinhoAberto, setCarrinhoAberto] = useState(false);
 
     useEffect(() => {
         const carrinhoSalvo = localStorage.getItem("carrinho");
@@ -50,9 +52,22 @@ function App() {
         );
     }
 
+    function removerDoCarrinho(index) {
+        const novoCarrinho = carrinho.filter((produto, i) => {
+            return i !== index;
+        });
+
+        setCarrinho(novoCarrinho);
+
+        localStorage.setItem(
+            "carrinho",
+            JSON.stringify(novoCarrinho)
+        );
+    }
+
     return (
         <div>
-            <Header quantidadeCarrinho={carrinho.length} />
+            <Header quantidadeCarrinho={carrinho.length} abrirCarrinho={() => setCarrinhoAberto(true)} />
 
             <main>
                 <section className="hero" id="inicio">
@@ -162,6 +177,14 @@ function App() {
                     © 2026 EcoTrend. Todos os direitos reservados.
                 </p>
             </footer>
+
+            {carrinhoAberto && (
+                <Cart
+                    carrinho={carrinho}
+                    removerDoCarrinho={removerDoCarrinho}
+                    fecharCarrinho={() => setCarrinhoAberto(false)}
+                />
+            )}
         </div>
     );
 }
