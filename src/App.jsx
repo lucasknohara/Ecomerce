@@ -8,6 +8,7 @@ import ProductFilter from "./components/ProductFilter/ProductFilter";
 function App() {
     const [produtos, setProdutos] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [erro, setErro] = useState("");
     const [carrinho, setCarrinho] = useState([]);
     const [carrinhoAberto, setCarrinhoAberto] = useState(false);
     const [checkoutAberto, setCheckoutAberto] = useState(false);
@@ -38,6 +39,8 @@ function App() {
                 setProdutos(dados);
             } catch (error) {
                 console.log("Erro:", error);
+
+                setErro("Não foi possível carregar os produtos.");
             } finally {
                 setLoading(false);
             }
@@ -217,8 +220,12 @@ function App() {
 
                     {loading ? (
                         <div className="loading">
+                            <div className="spinner"></div>
+                    
                             <p>Carregando produtos...</p>
                         </div>
+                    ) : erro ? (
+                        <p>{erro}</p>
                     ) : (
                         <div className="produtos-grid">
                             {produtosFiltrados.map((produto) => (

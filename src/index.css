@@ -331,3 +331,40 @@ footer p {
 
     font-size: 12px;
 }
+
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 60px 0;
+    color: #294d32;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+
+    border: 4px solid #dce3d9;
+    border-top: 4px solid #294d32;
+
+    border-radius: 50%;
+
+    animation: carregar 1s linear infinite;
+}
+
+@keyframes carregar {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading p {
+    margin: 0;
+    font-size: 14px;
+}
