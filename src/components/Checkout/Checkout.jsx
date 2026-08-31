@@ -11,7 +11,21 @@ function Checkout({ carrinho, fecharCheckout, finalizarCompra }) {
         return soma + produto.preco * produto.quantidade;
     }, 0);
 
-    function enviarPedido(e) {
+    function processarPedido() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const pedidoProcessado = true;
+
+                if (pedidoProcessado) {
+                    resolve("Pedido processado com sucesso!");
+                } else {
+                    reject("Não foi possível processar o pedido.");
+                }
+            }, 1500);
+        });
+    }
+
+    async function enviarPedido(e) {
         e.preventDefault();
 
         setErro("");
@@ -36,12 +50,18 @@ function Checkout({ carrinho, fecharCheckout, finalizarCompra }) {
             return;
         }
 
-        finalizarCompra({
-            nome,
-            email,
-            pagamento,
-            total,
-        });
+        try {
+            await processarPedido();
+
+            finalizarCompra({
+                nome,
+                email,
+                pagamento,
+                total,
+            });
+        } catch (error) {
+            setErro(error);
+        }
     }
 
     return (
