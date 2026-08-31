@@ -1,0 +1,66 @@
+[
+    {
+        "id": 1,
+        "nome": "Ecobag Natural",
+        "categoria": "Básica",
+        "preco": 39.90,
+        "imagem": "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?auto=format&fit=crop&w=800&q=80",
+        "descricao": "Ecobag simples, resistente e reutilizável para o dia a dia."
+    },
+    {
+        "id": 2,
+        "nome": "Ecobag Algodão Orgânico",
+        "categoria": "Orgânica",
+        "preco": 59.90,
+        "imagem": "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80",
+        "descricao": "Produzida com algodão orgânico para uma escolha mais sustentável."
+    },
+    {
+        "id": 3,
+        "nome": "Ecobag Minimalista",
+        "categoria": "Minimalista",
+        "preco": 49.90,
+        "imagem": "https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&w=800&q=80",
+        "descricao": "Design minimalista para combinar com qualquer estilo."
+    },
+    {
+        "id": 4,
+        "nome": "Ecobag Floral",
+        "categoria": "Estampada",
+        "preco": 54.90,
+        "imagem": "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=800&q=80",
+        "descricao": "Ecobag com estampa floral para deixar sua rotina mais colorida."
+    },
+    {
+        "id": 5,
+        "nome": "Ecobag Reciclada",
+        "categoria": "Reciclada",
+        "preco": 69.90,
+        "imagem": "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=800&q=80",
+        "descricao": "Produzida com materiais reciclados e pensada para durar."
+    },
+    {
+        "id": 6,
+        "nome": "Ecobag Premium",
+        "categoria": "Premium",
+        "preco": 89.90,
+        "imagem": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80",
+        "descricao": "Modelo premium com acabamento reforçado e maior resistência."
+    },
+    {
+        "id": 7,
+        "nome": "Ecobag Grande",
+        "categoria": "Grande",
+        "preco": 64.90,
+        "imagem": "https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=800&q=80",
+        "descricao": "Maior espaço para compras, livros e objetos do dia a dia."
+    },
+    {
+        "id": 8,
+        "nome": "Ecobag Artesanal",
+        "categoria": "Artesanal",
+        "preco": 79.90,
+        "imagem": "https://images.unsplash.com/photo-1583743814966-8936f37f4678?auto=format&fit=crop&w=800&q=80",
+        "descricao": "Modelo artesanal produzido com atenção aos detalhes."
+    }
+]
