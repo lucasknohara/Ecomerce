@@ -1,6 +1,6 @@
 import "./Cart.css";
 
-function Cart({ carrinho, removerDoCarrinho, fecharCarrinho, aumentarQuantidade, diminuirQuantidade, }) {
+function Cart({ carrinho, removerDoCarrinho, fecharCarrinho, aumentarQuantidade, diminuirQuantidade, abrirCheckout }) {
     const total = carrinho.reduce((soma, produto) => {
         return soma + produto.preco * produto.quantidade;
     }, 0);
@@ -84,7 +84,7 @@ function Cart({ carrinho, removerDoCarrinho, fecharCarrinho, aumentarQuantidade,
                         </strong>
                     </div>
 
-                    <button className="checkout-button">
+                    <button className="checkout-button" onClick={() => { fecharCarrinho(); abrirCheckout(); }} >
                         Finalizar compra
                     </button>
                 </div>

@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import ProductCard from "./components/ProductCard/ProductCard.jsx";
 import Header from "./components/Header/Header";
 import Cart from "./components/Cart/Cart";
+import Checkout from "./components/Checkout/Checkout";
 
 function App() {
     const [produtos, setProdutos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [carrinho, setCarrinho] = useState([]);
     const [carrinhoAberto, setCarrinhoAberto] = useState(false);
+    const [checkoutAberto, setCheckoutAberto] = useState(false);
 
     useEffect(() => {
         const carrinhoSalvo = localStorage.getItem("carrinho");
@@ -137,6 +139,21 @@ function App() {
         0
     );
 
+    function finalizarCompra(pedido) {
+        console.log("Pedido finalizado:", pedido);
+
+        localStorage.removeItem("carrinho");
+
+        setCarrinho([]);
+
+        setCheckoutAberto(false);
+        setCarrinhoAberto(false);
+
+        alert("Pedido realizado com sucesso!");
+    }
+
+
+
     return (
         <div>
             <Header quantidadeCarrinho={quantidadeCarrinho} abrirCarrinho={() => setCarrinhoAberto(true)} />
@@ -257,6 +274,15 @@ function App() {
                     aumentarQuantidade={aumentarQuantidade}
                     diminuirQuantidade={diminuirQuantidade}
                     fecharCarrinho={() => setCarrinhoAberto(false)}
+                    abrirCheckout={() => setCheckoutAberto(true)}
+                />
+            )}
+
+            {checkoutAberto && (
+                <Checkout
+                    carrinho={carrinho}
+                    fecharCheckout={() => setCheckoutAberto(false)}
+                    finalizarCompra={finalizarCompra}
                 />
             )}
         </div>
