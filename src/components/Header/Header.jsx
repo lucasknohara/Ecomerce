@@ -1,6 +1,6 @@
 import "./Header.css";
 
-function Header() {
+function Header({ quantidadeCarrinho }) {
     return (
         <header className="header">
             <div className="logo">
@@ -15,7 +15,8 @@ function Header() {
 
             <button className="cart-button">
                 <i className="fa-solid fa-bag-shopping"></i>
-                Carrinho
+
+                Carrinho ({quantidadeCarrinho})
             </button>
         </header>
     );

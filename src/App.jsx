@@ -5,6 +5,15 @@ import Header from "./components/Header/Header";
 function App() {
     const [produtos, setProdutos] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [carrinho, setCarrinho] = useState([]);
+
+    useEffect(() => {
+        const carrinhoSalvo = localStorage.getItem("carrinho");
+
+        if (carrinhoSalvo) {
+            setCarrinho(JSON.parse(carrinhoSalvo));
+        }
+    }, []);
 
     useEffect(() => {
         async function buscarProdutos() {
@@ -30,9 +39,20 @@ function App() {
         buscarProdutos();
     }, []);
 
+    function adicionarAoCarrinho(produto) {
+        const novoCarrinho = [...carrinho, produto];
+
+        setCarrinho(novoCarrinho);
+
+        localStorage.setItem(
+            "carrinho",
+            JSON.stringify(novoCarrinho)
+        );
+    }
+
     return (
         <div>
-            <Header />
+            <Header quantidadeCarrinho={carrinho.length} />
 
             <main>
                 <section className="hero" id="inicio">
@@ -81,6 +101,7 @@ function App() {
                                 <ProductCard
                                     key={produto.id}
                                     produto={produto}
+                                    adicionarAoCarrinho={adicionarAoCarrinho}
                                 />
                             ))}
                         </div>
