@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ProductCard from "./components/ProductCard/ProductCard.jsx";
+import Header from "./components/Header/Header";
 
 function App() {
     const [produtos, setProdutos] = useState([]);
@@ -31,22 +32,7 @@ function App() {
 
     return (
         <div>
-            <header className="header">
-                <div className="logo">
-                    <span>Eco</span>Trend
-                </div>
-
-                <nav>
-                    <a href="#inicio">Início</a>
-                    <a href="#produtos">Ecobags</a>
-                    <a href="#sobre">Sobre</a>
-                </nav>
-
-                <button className="cart-button">
-                    <i className="fa-solid fa-bag-shopping"></i>
-                    Carrinho
-                </button>
-            </header>
+            <Header />
 
             <main>
                 <section className="hero" id="inicio">
