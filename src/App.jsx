@@ -42,7 +42,32 @@ function App() {
     }, []);
 
     function adicionarAoCarrinho(produto) {
-        const novoCarrinho = [...carrinho, produto];
+        const produtoExistente = carrinho.find(
+            (item) => item.id === produto.id
+        );
+
+        let novoCarrinho;
+
+        if (produtoExistente) {
+            novoCarrinho = carrinho.map((item) => {
+                if (item.id === produto.id) {
+                    return {
+                        ...item,
+                        quantidade: item.quantidade + 1,
+                    };
+                }
+
+                return item;
+            });
+        } else {
+            novoCarrinho = [
+                ...carrinho,
+                {
+                    ...produto,
+                    quantidade: 1,
+                },
+            ];
+        }
 
         setCarrinho(novoCarrinho);
 
@@ -52,9 +77,29 @@ function App() {
         );
     }
 
-    function removerDoCarrinho(index) {
-        const novoCarrinho = carrinho.filter((produto, i) => {
-            return i !== index;
+    function removerDoCarrinho(id) {
+        const novoCarrinho = carrinho.filter(
+            (produto) => produto.id !== id
+        );
+
+        setCarrinho(novoCarrinho);
+
+        localStorage.setItem(
+            "carrinho",
+            JSON.stringify(novoCarrinho)
+        );
+    }
+
+    function aumentarQuantidade(id) {
+        const novoCarrinho = carrinho.map((produto) => {
+            if (produto.id === id) {
+                return {
+                    ...produto,
+                    quantidade: produto.quantidade + 1,
+                };
+            }
+
+            return produto;
         });
 
         setCarrinho(novoCarrinho);
@@ -65,9 +110,36 @@ function App() {
         );
     }
 
+    function diminuirQuantidade(id) {
+        const novoCarrinho = carrinho
+            .map((produto) => {
+                if (produto.id === id) {
+                    return {
+                        ...produto,
+                        quantidade: produto.quantidade - 1,
+                    };
+                }
+
+                return produto;
+            })
+            .filter((produto) => produto.quantidade > 0);
+
+        setCarrinho(novoCarrinho);
+
+        localStorage.setItem(
+            "carrinho",
+            JSON.stringify(novoCarrinho)
+        );
+    }
+
+    const quantidadeCarrinho = carrinho.reduce(
+        (total, produto) => total + produto.quantidade,
+        0
+    );
+
     return (
         <div>
-            <Header quantidadeCarrinho={carrinho.length} abrirCarrinho={() => setCarrinhoAberto(true)} />
+            <Header quantidadeCarrinho={quantidadeCarrinho} abrirCarrinho={() => setCarrinhoAberto(true)} />
 
             <main>
                 <section className="hero" id="inicio">
@@ -182,6 +254,8 @@ function App() {
                 <Cart
                     carrinho={carrinho}
                     removerDoCarrinho={removerDoCarrinho}
+                    aumentarQuantidade={aumentarQuantidade}
+                    diminuirQuantidade={diminuirQuantidade}
                     fecharCarrinho={() => setCarrinhoAberto(false)}
                 />
             )}

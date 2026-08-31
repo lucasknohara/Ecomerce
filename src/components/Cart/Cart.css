@@ -174,8 +174,47 @@
     background-color: #203b28;
 }
 
-@media (max-width: 500px) {
-    .cart {
-        width: 100%;
-    }
+.quantity-controls {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 10px;
+}
+
+.quantity-controls button {
+    width: 25px;
+    height: 25px;
+
+    border: 1px solid #dce3d9;
+
+    border-radius: 5px;
+
+    background-color: #f7f8f4;
+
+    color: #294d32;
+
+    font-weight: bold;
+}
+
+.quantity-controls span {
+    min-width: 20px;
+
+    text-align: center;
+
+    font-size: 13px;
+}
+
+.remove-button {
+    border: none;
+
+    background: none;
+
+    color: #b44c4c;
+
+    font-size: 12px;
+
+    cursor: pointer;
 }

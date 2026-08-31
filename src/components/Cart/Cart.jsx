@@ -1,8 +1,8 @@
 import "./Cart.css";
 
-function Cart({ carrinho, removerDoCarrinho, fecharCarrinho }) {
+function Cart({ carrinho, removerDoCarrinho, fecharCarrinho, aumentarQuantidade, diminuirQuantidade, }) {
     const total = carrinho.reduce((soma, produto) => {
-        return soma + produto.preco;
+        return soma + produto.preco * produto.quantidade;
     }, 0);
 
     return (
@@ -38,12 +38,33 @@ function Cart({ carrinho, removerDoCarrinho, fecharCarrinho }) {
                                     <h3>{produto.nome}</h3>
 
                                     <strong>
-                                        R$ {produto.preco.toFixed(2)}
+                                        R$ {(produto.preco * produto.quantidade).toFixed(2)}
                                     </strong>
 
+                                    <div className="quantity-controls">
+                                        <button
+                                            onClick={() =>
+                                                diminuirQuantidade(produto.id)
+                                            }
+                                        >
+                                            -
+                                        </button>
+                                        
+                                        <span>{produto.quantidade}</span>
+                                        
+                                        <button
+                                            onClick={() =>
+                                                aumentarQuantidade(produto.id)
+                                            }
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+                                        
                                     <button
+                                        className="remove-button"
                                         onClick={() =>
-                                            removerDoCarrinho(index)
+                                            removerDoCarrinho(produto.id)
                                         }
                                     >
                                         Remover
