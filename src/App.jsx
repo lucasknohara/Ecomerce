@@ -3,6 +3,7 @@ import ProductCard from "./components/ProductCard/ProductCard.jsx";
 import Header from "./components/Header/Header";
 import Cart from "./components/Cart/Cart";
 import Checkout from "./components/Checkout/Checkout";
+import ProductFilter from "./components/ProductFilter/ProductFilter";
 
 function App() {
     const [produtos, setProdutos] = useState([]);
@@ -10,6 +11,8 @@ function App() {
     const [carrinho, setCarrinho] = useState([]);
     const [carrinhoAberto, setCarrinhoAberto] = useState(false);
     const [checkoutAberto, setCheckoutAberto] = useState(false);
+    const [categoria, setCategoria] = useState("todas");
+    const [precoMaximo, setPrecoMaximo] = useState("todos");
 
     useEffect(() => {
         const carrinhoSalvo = localStorage.getItem("carrinho");
@@ -152,11 +155,28 @@ function App() {
         alert("Pedido realizado com sucesso!");
     }
 
+    const produtosFiltrados = produtos.filter((produto) => {
+        const categoriaValida =
+            categoria === "todas" ||
+            produto.categoria === categoria;
 
+        const precoValido =
+            precoMaximo === "todos" ||
+            produto.preco <= Number(precoMaximo);
+
+        return categoriaValida && precoValido;
+    });
 
     return (
         <div>
             <Header quantidadeCarrinho={quantidadeCarrinho} abrirCarrinho={() => setCarrinhoAberto(true)} />
+
+            <ProductFilter
+                categoria={categoria}
+                setCategoria={setCategoria}
+                precoMaximo={precoMaximo}
+                setPrecoMaximo={setPrecoMaximo}
+            />
 
             <main>
                 <section className="hero" id="inicio">
@@ -201,7 +221,7 @@ function App() {
                         </div>
                     ) : (
                         <div className="produtos-grid">
-                            {produtos.map((produto) => (
+                            {produtosFiltrados.map((produto) => (
                                 <ProductCard
                                     key={produto.id}
                                     produto={produto}
